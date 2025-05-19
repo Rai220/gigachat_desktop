@@ -8,6 +8,7 @@ dependencies = [
     "langchain_community",
     "duckduckgo-search",
     "python-dotenv",
+    "pillow",
 ]
 
 [build-system]
