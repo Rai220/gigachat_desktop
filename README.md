@@ -4,7 +4,7 @@ A minimal desktop chat application that connects to GigaChat using LangGraph's R
 
 ## Requirements
 - Python 3.10+
-- A valid `GIGACHAT_CLIENT_ID` and `GIGACHAT_CLIENT_SECRET` for [GigaChat](https://developers.sber.ru/gigachat/)
+- A valid `GIGACHAT_CREDENTIALS` value for [GigaChat](https://developers.sber.ru/gigachat/)
 
 Install dependencies using [uv](https://github.com/astral-sh/uv):
 
@@ -15,7 +15,7 @@ uv pip install -r requirements.txt
 ```
 
 ## Running
-Create a `.env` file based on `.env.example` containing your `GIGACHAT_CLIENT_ID` and `GIGACHAT_CLIENT_SECRET`, then run the application:
+Create a `.env` file based on `.env.example` containing your `GIGACHAT_CREDENTIALS`, then run the application:
 
 ```bash
 python3 -m gigachat_desktop.app
