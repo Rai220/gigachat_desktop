@@ -3,19 +3,32 @@ import threading
 import tkinter as tk
 from tkinter import scrolledtext
 
+from dotenv import load_dotenv
+
 from langgraph.prebuilt import create_react_agent
 from langchain_gigachat import GigaChat
+from gigachat.utils.credentials import GigaChatCredentials
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain.agents import Tool
 
 
 def build_agent() -> "langgraph.Graph":
     """Create a simple ReAct agent using GigaChat and a search tool."""
-    api_key = os.environ.get("GIGACHAT_API_KEY")
-    if not api_key:
-        raise RuntimeError("GIGACHAT_API_KEY environment variable not set")
+    load_dotenv()
+    client_id = os.environ.get("GIGACHAT_CLIENT_ID")
+    client_secret = os.environ.get("GIGACHAT_CLIENT_SECRET")
+    if not client_id or not client_secret:
+        raise RuntimeError(
+            "GIGACHAT_CLIENT_ID and GIGACHAT_CLIENT_SECRET must be set"
+        )
 
-    llm = GigaChat(api_key=api_key, verify_ssl_certs=False)
+    credentials = GigaChatCredentials(
+        client_id=client_id,
+        client_secret=client_secret,
+        scope="GIGACHAT_API_PERS",
+    )
+
+    llm = GigaChat(credentials=credentials, verify_ssl_certs=False)
     search = DuckDuckGoSearchRun()
     tools = [
         Tool(

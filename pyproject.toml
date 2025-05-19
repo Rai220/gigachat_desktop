@@ -1,0 +1,15 @@
+[project]
+name = "gigachat_desktop"
+version = "0.1.0"
+dependencies = [
+    "langchain",
+    "langchain_gigachat",
+    "langgraph",
+    "langchain_community",
+    "duckduckgo-search",
+    "python-dotenv",
+]
+
+[build-system]
+requires = ["uv>=0.1"]
+build-backend = "uv"
